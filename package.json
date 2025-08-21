@@ -21,6 +21,7 @@
   "dependencies": {
     "@solana-developers/helpers": "^2.8.1",
     "@solana/spl-memo": "^0.2.5",
+    "@solana/spl-token": "^0.4.13",
     "@solana/web3.js": "^1.98.4",
     "dotenv": "^17.2.1",
     "esrun": "^3.2.30"
