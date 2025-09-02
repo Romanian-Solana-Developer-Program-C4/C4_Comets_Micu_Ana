@@ -1,0 +1,36 @@
+{
+  "name": "comets-web3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Romanian-Solana-Developer-Program-C4/C4_Comets_Micu_Ana.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Romanian-Solana-Developer-Program-C4/C4_Comets_Micu_Ana/issues"
+  },
+  "homepage": "https://github.com/Romanian-Solana-Developer-Program-C4/C4_Comets_Micu_Ana#readme",
+  "dependencies": {
+    "@metaplex-foundation/mpl-token-metadata": "^3.4.0",
+    "@metaplex-foundation/umi": "^1.2.0",
+    "@metaplex-foundation/umi-bundle-defaults": "^1.2.0",
+    "@metaplex-foundation/umi-uploader-irys": "^1.2.0",
+    "@solana-developers/helpers": "^2.8.1",
+    "@solana/spl-memo": "^0.2.5",
+    "@solana/spl-token": "^0.4.13",
+    "@solana/web3.js": "^1.98.4",
+    "dotenv": "^17.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "esrun": "^3.2.30"
+  }
+}
