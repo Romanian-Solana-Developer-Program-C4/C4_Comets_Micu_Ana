@@ -1,5 +1,10 @@
-use anchor_lang::prelude::*;
-use anchor_spl::associated_token::AssociatedToken;
+use anchor_lang::prelude::*; 
+use anchor_spl::{
+    associated_token::AssociatedToken,
+    token_interface::{Mint, TokenAccount, TokenInterface},
+};
+use anchor_spl::token_2022::{transfer_checked, TransferChecked};
+
 
 // pub mod instructions;
 
@@ -11,6 +16,7 @@ pub const ANCHOR_DISCRIMINATOR: u8 = 8;
 
 #[program]
 mod escrow {
+    #[account(mut)]
     use super::*;
 
     pub fn make_offer(
@@ -46,7 +52,7 @@ mod escrow {
             cpi_context,
             token_a_offered_amount,
             ctx.accounts.token_mint_a.decimals,
-        );
+        ).unwrap(); 
 
         Ok(())
     }
@@ -92,7 +98,7 @@ pub struct MakeOffer<'info> {
 
     pub system_program: Program<'info, System>,
     pub associated_token_program: Program<'info, AssociatedToken>,
-    pub token_program: Interface<'info, TokenInterface>,
+    pub token_program: Program<'info, TokenInterface>,
 }
 
 #[derive(Accounts)]
@@ -114,7 +120,6 @@ pub struct NewAccount {
 }
 
 #[account]
-#[derive(InitSpace)]
 pub struct Offer {
     pub maker: Pubkey,
     pub token_mint_a: Pubkey,

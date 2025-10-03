@@ -1,0 +1,69 @@
+♡(ू•‧̫•ू⑅)BLOCKCHAIN, CRYPTO, MONEY CALLING ALEA ALEA ღ˘◡˘ற♡.｡oO
+
+Blockchain = inlantuire de inregistrari in continua crestere, numite !blocuri, legate prin criptografie
+		   - construit astfel incat sa fie rezistent la modificari ale datelor
+		   - regsitru !deschis si !distribuit, care poate inregistra eficient si sigur tranzactii intre doua entitati
+		   - e mai mult decat date tranzactionale: pe masura ce tehnologia se maturizeaza, blockchain-ul va urma probabil aceleasi faze timpurii ale 
+		   internetului, dar intr-un ritm mult mai rapid si se va conecta cu alte sisteme, servicii si analize; astfel va fi similar modului in care 
+		   internetul a devenit conectat cu analiza datelor, inteligenta artificiala, tehnologiile cognitive si IoT 
+		   
+																													 \	
+Exemple din viata reala: - atunci cand votezi, cum poti sti ca votul tau este numarat?								 |
+						 - cum poti fi sigur de identitatea unei persoane din online?								 |=> e o chestie de securitate (ᵒ̤̑ ₀̑ ᵒ̤̑) wow!*✰	
+						 - cand cumperi cafea cu eticheta de comert echitabil, cum poti fi sigur de originea sa? 	 |
+																													 /
+																												
+	> pentru toate acestea este nevoie de un sistem in care inregistrarile sa fie stocate si care sa asigure ca faptele pot fi verificate de oricine
+	> astfel nimeni nu ar putea trisa si modifica datele, pentru ca sistemul ar putea fi folosit de oricine doar pentru vizionare
+																				
+																			||
+																			||
+																			\/
+																			
+																\(๑•́o•̀๑)/ BLOCKCHAIN!!\(๑•́o•̀๑)/
+																		
+																		 /   |    \
+			stocheaza informatii pe intreaga retea de computere personale	 |	 este detinut de catre persoane care folosesc computerul personal
+										||									 |	pentru a tine pachete de inregistrari prezentate de altii, intr-un										
+										\/									 |								lant cronologic 
+						!descentralizate si !distribuite					 |									   ||
+										=									 |									   \/
+				nu e nicio companie centrala sau personala care detine		 |									 
+					  sistemul, toata lumea il poate folosi					 |									BLOCURI!!♡(ू•‧̫•ू⑅)
+																			 |	
+																			 |
+																			
+											foloseste o forma de matematica numita criptografie pentru a se asigura 
+										ca inregistrarile nu pot sa fie contrafacute sau modificate de altcineva in afara
+																de cei care detin sistemul
+																
+Block = o bucata de cod cu anumite informatii																
+																
+	> criptomonedele difera de cardurile de credit sau paypal sau alte modalitati de a trimite bani prin faptul ca mu exista o banca sau o institutie
+	financiara intermediara implicata; poti trimite criptomonede oricui, chiar si unui strain.
+	> oameni din intreaga lume ajuta la validarea tranzactiilor de criptomonede ale altora prin computerele lor personale si castiga o mica taxa.
+	> poate fi o singura persoana care detine criptomonedele la un moment de timp => nu pot fi cheltuite de doua ori.
+	
+Ginni Rometty, director executiv IBM (2012–2020), spune ca „blockchain-ul va face pentru tranzactii ceea ce internetul a facut pentru informatii”.
+
+Token = unitate digitala de o anumita valoare creata pe blockchain
+	  - poate fi o moneda (US Dollar Coin, DAI)
+	  - poate reprezenta drepturi (un vot intr-un Decentralized Autonomous Organization)
+	  - poate reprezenta bunuri (NFT)
+		
+	> diferenta dintre moneda nativa a unui blockchain si un token este ca moneda nativa este incorporata direct in protocol, pe cand token-urile
+	sunt create peste blockchain printr-un anumit standard, adica prin niste reguli
+	
+Exemple: - pe Ethereum, token-urile sunt definite prin standarde ERC (Ethereum Request for Comment), iar cel mai folosit e ERC-20, care defineste
+		 regulile pentru tokenuri fungibile, adica toate unitatile sunt identice, la fel ca euro sau dolarii; exemple de token-uri ERC-20 sunt:
+			- USDT (Tether)
+			- USDC (USD Coin)
+			- DAI (MakerDAO stablecoin)
+			- LINK (Chainlink)
+		- pe Ethereum, standardul ERC-721 este folosit pentru NFT-uri (token-uri unice, fiecare e diferit)
+		- tot pe Ethereum, standardul ERC-1155 este folosit pentru token-uri hibride (atat fungibile cat si non-fungibile)
+		- pe Solana, token-urile respecta standardul SPL, care e echivalent cu ERC-20 pe Ethereum.
+
+solana find-program-derived-address TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA string:hello
+4HB6s1bAiAPk8kxSatGd3U7bKArXXSoDfemfu23UZBdw
+		   

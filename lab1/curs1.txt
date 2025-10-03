@@ -1,0 +1,197 @@
+CURS 1 - INTRODUCERE IN CRYPTO
+
+CRIPTOGRAFIE SIMETRICA
+
+- la baza multor sisteme in cs este sender si receiver, pentru a transmite un mesaj 
+intre doua parti astfel incat mesajul sa fie cunoscut numai de prima parte (care 
+transmite) si a doua parte (care primeste) si astfel incat primitorul de mesaj sa
+poata verifica validitatea mesajului original
+- criptografia simetrica implica un sender care trimite un mesaj secret si receiver
+cel care primeste, iar amandoi trebuie sa decida o cheie secreta care va folosi 
+pentru criptarea si decriptarea acestui mesaj
+- sa presupunem ca Alice (sender) transmite un mesaj lui Bob (receiver); ei decid
+un secret pe care Alice il foloseste printr-un algoritm prin care cripteaza mesajul
+astfel incat oricine gaseste mesajul criptat sa nu poata sa il descifreze fara cheia
+secreta; Bob foloseste acelasi secret ca Alice pentru a descrifra mesajul.
+- problema principala in criptografia simetrica este ca sender si receiver trebuie 
+sa faca un share de secret; asta inseamna ca ei au nevoie de canal care este deja 
+securizat.
+
+CRIPTOGRAFIE ASIMETRICA
+
+- criptografia asimetrica implica un algoritm unde este tot un sender si un receiver
+dar in acest caz sunt doua chei: una privata si una publica; astfel nu este nevoie ca
+ele sa se intalneasca, cum e in cazul criptarii simetrice. 
+- cheia privata este o cheie care nu trebuie aratata nimanui 
+- cheia publica este o cheie care se poate folosi de catre oricine pentru a decripta
+mesajul
+- criptarea asimetrica: sender-ul ia cheia publica a receiver-ului si cripteaza
+mesajul, astfel incat doar receiver-ul sa o poata decripta.
+- criptarea asimetrica se mai poate face si prin cheia privata a sender-ului, dar in 
+acest fel rezultatul nu este confidential: este verificabil de catre oricine are 
+cheia publica a sender-ului - asta e, de fapt, semnatura digitala.
+- astfel, daca vrei sa ascunzi mesajul, folosesti cheia publica a receiver-ului;
+daca vrei sa dovedesti ca tu l-ai trimis, semnezi cu cheia ta privata, intrucat
+oricine poate verifica asta cu cheia ta publica.
+- un exemplu de aplicare este un Website: cum browser-ul nostru stie ca noi putem sa 
+avem incredere intr-un site; este un certificat care a fost publiat undeva si browser-
+ul nostru, folosind cheia publica verifica validitatea.
+ 
+SEMNATURA DIGITALA
+
+- in Solana, fiecare tranzactie/mesaj este semnat digital printr-o cheie secreta.
+- de exemplu, vrem sa vedem tranzactia prin care Alice a trimis 10 dolari catre
+wallet-ul Bob: Alice semneaza tranzactia cu cheia ei secreta, trimite tranzactia
+pe blockhain si oricine din participantii blockchain-ului poate sa verifice ca
+luand cheia publica a lui Alice, tranzactia asta e semnata cu cheia ei secreta.
+- semnatura este o parte a tranzactiei trimisa pe blockchain.
+
+Intrebare: cine verifica aceste tranzactii? pe blockchain-ul bitcoin, de exemplu,
+sunt aparatele ASIC (Bitcoin Mining Machine) care valideaza aceste tranzactii.
+Cum se intampla in cazul Solana?
+Raspuns: Exista participanti ai blockchain-ului care se numesc validatoare (valabil
+si pentru MultiversX). In limbaj simplu, este o aplicatie simpla scrisa in Rust
+care ruleaza si primeste ca input tranzactiile, le verifica cu cheile publice care 
+sunt mentionate in tranzactie si spune ca, intr-adevar, tranzactia a fost semnata de 
+persoana care detine cheia secreta pentru cheia publica ce a fost semnata. Daca
+exista un validator care vrea sa introduca o tranzactie invalida, care nu a fost
+semnata de perechea de keypair mentionata, fiecare validator trebuie sa faca un stake
+de sol, adica un minim amount de sol, iar daca cineva vede ca un validator a inclus
+intr-un bloc al blockchain-ului o tranzactie care a esuat la verificare, atunci este
+un mecanism care se numeste slashing, si se ia o parte din valoarea banilor care au 
+fost staked, puse la o parte in interiorul blockchain-ului. Astfel este o motivatie
+pentru validatoare sa nu amageasca participantii, prin faptul ca o sa piarda banii 
+pe care i-au adaugat, si alti validatori verifica pe toti validatorii si daca cineva
+gaseste un bloc care e invalid se face throwback la blocul precedent. Practic platesti
+ca sa intri in jocul de validator si sa rulezi aplicatia. Daca cineva gaseste ca ai
+comis o infractiune, iti iau banii. O motivatie de a fi validator este ca o parte a
+tranzactiei (fee) se duce la validator.
+
+- ca securitate: algoritmii de criptare sunt creati in asa fel incat sa le criptezi 
+prin brut force e foarte greu, sa gasesti asa o cheie secreta care corespune cheii 
+publice.
+- exemplu: algorimtul RSA foloseste factorizarea numerelor prime.
+- algoritmul specific solana este Eliptic Curve Cryptography (formula unei curbe
+eliptice)
+- daca signer-ul a decis sa semneze o tranzactie el nu poate sa-si ia semnatura inapoi
+daca semnatura devine publica; cand semnezi o tranzactie oarecare, trebuie sa incluzi
+ca parte a tranzactiei unul din hash-urile blockchain-ului, care e valid in jur de
+60 de secunde. deci, semnatura e valida cam un minut. daca trimiti tranzactia pe
+blockchain in mai putin de un minut este valida, dar daca e mai mult de un minut,
+blockchain-ul va rejecta tranzactia.
+
+PASAPOARTE
+
+- sunt mecanisme de identificare a persoanelor.
+- fiecarei persoane i se da o cheie secreta si prin faptul ca ea poate sa semneze,
+arata ca pasaportul sau public key-ul identifica persoana respectiva.
+
+SOLANA KEYPAIRS
+
+- Solana foloseste keypar-uri: o cheie secreta si una publica
+- cheia publica este adresa care identifica un account
+- un public key e un fel de wallet care contine banii nostri/token-urile noastre
+
+ACCOUNTS
+
+- arhitectura blockchain-ului Solana a fost facuta in asa fel incat sa foloseasca
+mecansime de paralelizare in calculatoare si toate datele sunt pastrate in aceste
+account-uri.
+- cel mai usor de inteles account este un wallet (o pereche secret key si public 
+key) care poate sa pastreze SOL (token nativ pe Solana)
+- exista account-uri care pot sa pastreze balanta noastra in alte tokenu-uri, de
+exemplu USDC.
+- wallet-ul care pastreaza sol nu poate neaparat sa pastreze alte tokenuri; pe baza
+lui sunt generate alte account-uri, care arata balanta pentru fiecare token.
+- NFT este un token solana care este unic. el arata ca un asset digital iti apartine
+tie.
+- programele = smart contracts care ruleaza pe solana.
+- un solana account: relatia dintre un pub key si continutul account-ului care 
+corepsunde pub key-ului, care e o memorie a calculatorului global, unde fiecare
+pub key poate sa contina pana la X bytes de informatie.
+- fiecare account e identificat dupa cheia publica.
+- cheia publica este un sir de 32 de bytes based 58 encoded; luam byte-urile, le
+encodam si reprezinta pub key-ul nostru.
+- fiecare account are 4 field-uri:
+ > data (bytes): oricate date in orice forma 
+ > executable (bool): arata daca solana account este un wallet (e false) sau daca e
+ un program/smart contract (e true).
+ > lamports (number): arata cat sol are account-ul dat. un lamport este cea mai mica
+ unitate pe care poate sa o aiba un wallet pe solana. 1 sol = 10^9 lamports 
+ > owner (program address): este adresa unui program, adica pub key-ul unui alt account
+ pe solana, caruia ii este permis sa modifice datele din accountul dat.
+ 
+Solana se deosebeste de alte blockchain-uri prin faptul ca exista mai multe account-
+uri sau smart contract-uri native, cum ar fi System Program sau Token Program care 
+implementeaza pattern-urile frecvent folosite in blockchain, cum ar fi transferul de
+lamports, de bani, sau de alte token-uri.
+
+WALLET ACCOUNT
+
+- este un wallet care nu contine date (are data: none si executable: false) dar
+contine o valoare de lamports; owner-ul la un astfel de account este System Program,
+ceea ce inseamna ca un anume System Program poate sa modifice datele acestui account,
+orice alt program in cazul dat nu poate sa faca asta.
+
+CUSTOM PROGRAM ACCOUNT
+
+- pentru a face deploy/a crea un smart-contract pe solana, trebuie sa avem executable:
+true si owner: BPF Loader; acesta din urma este un program nativ al solanei care 
+poate sa modifice continutul acestui account, care este codul programului pe care vrem
+sa facem deploy.
+
+SOL
+
+- este token-ul nativ folosit pentru plata fee-urilor, a rent-ului pentru accounts, a 
+costului pentru a face un deploy la un program.
+
+In Solana, tranzactiile care nu se suprapun sunt procesate in paralel (de exemplu,
+Alice vrea sa faca o tranzactie catre Bob si in acelasi timp Carol vrea sa faca o
+tranzactie catre Dave - tranzactiile vor fi adaugate in acelasi bloc, astfel ca sunt 
+posibile mai multe tranzactii pe secunda in comparatie cu alte blockchain-uri).
+
+Solana: 1370 de tranzactii pe secunda (in teorie, maxim 60 000), pe cand la Bitcon 
+doar 7.
+
+CLUSTERE SOLANA
+
+- localnet - cand local pe calculatorul nostru luam validatorul sau insusi 
+blockchain-ul (free sol airdrop, mint). 
+- devnet - folosit pentru testarea aplicatiilor (free sol airdrop, mint). 
+- testnet - folosit mai mult de validatori, la nivel de infrastructura, toate 
+schimbarile legate de cum lucreaza solana sunt testate aici.
+
+TRANZACTII
+
+- cum facem ceva util pe blockchain? prin tranzactii.
+- tranzactie =  set de instructiuni care implica faptul ca tranzactia trece atunci
+cand toate instructiunile trec; daca o instructiune da fail, toata tranzactia da 
+fail -> nu se modifica starea blockchain-ului.
+- o tranzactie contine semnatura/semnaturile tranzactiei si transaction message
+- transaction message include un header, adresa account-urilor (toate adresele
+conturilor care au fost citite si modificate in urma tranzactiei - aceasta informatie
+este importanta pentru a determina la ce nivel de paralelizare a tranzactiilor
+blockchain se poate ajunge), recent blockhash (un hash al precedentului bloc care
+a fost generat in blockchain-ul solanei, asigura ca daca semnezi o tranzactie,
+exista un interval de timp in care tranzactia poate fi trimisa pe blockchain, pentru
+a nu exista sansa ca tu sa semnezi o tranzactie, sa nu o trimiti, dar sa fie 
+trimisa de catre altcineva) si lista de instructiuni
+- tranzactiile la nivel de validator se impart in cozi paralele, iar toate 
+tranzactiile care pot rula in paralel vor rula in paralel
+
+Solana = giant global computer.
+Accounts = memoria calculatorului.
+
+In alte blockchain-uri, programele se numesc smart contracts. In Solana, se numesc
+onchain programs (programs).
+
+INSTRUCTIUNI
+
+- sunt cea mai de baza unitate operationala pe Solana
+- permit schimbarea/modificarea account-rilor de pe blockchain
+- cea mai simpla modificare a state-ului unui account este la field-ul lamports,
+care se face prin System Program transfer
+- o instructiune cuprinde 3 field-uri: Program ID (id-ului programului care 
+contine codul care va executa instructiunea data), lista de account-uri (index-uri
+de accound addresses din tranzactie care sunt folosite de instructiune), Data 
+for the Program (input-ul instructiunii).
