@@ -1,0 +1,37 @@
+CURS 2 - TOKENS
+
+Recapitulare din cursul 1
+
+- fiecare account are 4 field-uri(Account Info):
+ > data (bytes): oricate date in orice forma 
+ > executable (bool): arata daca solana account este un wallet (e false) sau daca e
+ un program/smart contract (e true).
+ > lamports (number): arata cat sol are account-ul dat. un lamport este cea mai mica
+ unitate pe care poate sa o aiba un wallet pe solana. 1 sol = 10^9 lamports 
+ > owner (program address): este adresa unui program, adica pub key-ul unui alt account
+ pe solana, caruia ii este permis sa modifice datele din accountul dat.
+
+- inima blockchain-ului Solana este conceptul de Account
+- Account-ul este un concept abstract; este o mapare a unei adrese oarecare la o informatie abstracta
+- ne intereseaza mai mult field-ul data care contine byte-uri aleatorii si field-ul owner
+
+Tipuri de accounts:
+
+1. SYSTEM ACCOUNT
+- aka Wallet (generat cu Keypair.generate() ca in lab1)
+- cel mai folosit si simplu tip de account din Solana
+- poate fi interpretat ca user identity
+- owner-ul este intotdeauna SystemProgram; asta inseamna ca toate modificarile din Account Info(cele 4 field-uri) al unui 
+System Account se face DOAR de catre SystemProgram
+- se foloseste pentru transferuri de SOL, pentru achitarea fee-urilor, pentru semnarea tranzactiilor
+
+2. PROGRAM ACCOUNT
+- field-ul executable este true
+- field-ul data pastreaza programul compilat (pe care Solana stie sa il interpreteze)
+
+3. MINT ACCOUNT
+- are ca owner TokenProgram
+- in data se gasesc: supply, decimals, mint authority, freeze authority
+- un exemplu de Mint Account este Token USDC
+
+
